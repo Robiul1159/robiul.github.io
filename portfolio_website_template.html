@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Portfolio</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #1f2a44;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #dbe3ef;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1b2740;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #50627d;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: #1e63c6; }
+
+    .theme-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #d7dfeb;
+      background: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dbe3ef;
+      border-radius: 26px;
+      box-shadow: 0 8px 20px rgba(24, 39, 75, 0.05);
+      padding: 34px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .profile-box {
+      background: #f3f6fb;
+      border: 1px solid #dbe3ef;
+      border-radius: 24px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid white;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+
+    .profile-box p, .profile-box a {
+      color: #5b6d88;
+      font-size: 1.05rem;
+      text-decoration: none;
+      line-height: 1.7;
+    }
+
+    .social-links {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a:hover { color: #1e63c6; }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: #141d33;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      line-height: 1.8;
+      color: #5b6d88;
+      margin: 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin: 0 0 12px;
+      color: #18233b;
+    }
+
+    .title-line {
+      width: 52px;
+      height: 4px;
+      background: linear-gradient(90deg, #1e63c6, #f0a43a);
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #5b6d88;
+    }
+
+    .timeline-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e7edf6;
+    }
+
+    .timeline-item:last-child { border-bottom: 0; }
+
+    .timeline-item h3 {
+      margin: 0 0 6px;
+      color: #1d2b45;
+    }
+
+    .timeline-item span {
+      color: #1e63c6;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: #5b6d88;
+      line-height: 1.7;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .pub-item {
+      background: #f8fbff;
+      border: 1px solid #dce6f3;
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    .pub-item h4 {
+      margin: 0 0 8px;
+      color: #1a2740;
+    }
+
+    .pub-item p {
+      margin: 0;
+      color: #5b6d88;
+      line-height: 1.6;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      padding: 18px;
+      background: #f8fbff;
+      border: 1px solid #dce6f3;
+      border-radius: 18px;
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #1a2740;
+    }
+
+    .contact-card a, .contact-card p {
+      margin: 0;
+      color: #5b6d88;
+      text-decoration: none;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 50px;
+      color: #7687a1;
+    }
+
+    .dark {
+      background: #0f1726;
+      color: #e6edf8;
+    }
+
+    .dark .navbar {
+      background: rgba(14, 22, 36, 0.9);
+      border-bottom-color: #28344d;
+    }
+
+    .dark .card,
+    .dark .profile-box,
+    .dark .pub-item,
+    .dark .contact-card {
+      background: #182235;
+      border-color: #2a3752;
+      box-shadow: none;
+    }
+
+    .dark .brand,
+    .dark .hero h1,
+    .dark .section-title,
+    .dark .timeline-item h3,
+    .dark .pub-item h4,
+    .dark .contact-card strong {
+      color: #f0f5ff;
+    }
+
+    .dark .nav-links a,
+    .dark .hero p,
+    .dark .section-text,
+    .dark .timeline-item p,
+    .dark .profile-box p,
+    .dark .profile-box a,
+    .dark .pub-item p,
+    .dark .contact-card a,
+    .dark .contact-card p,
+    .dark footer {
+      color: #b4c0d4;
+    }
+
+    .dark .theme-btn {
+      background: #182235;
+      color: white;
+      border-color: #2a3752;
+    }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-inner { gap: 14px; flex-direction: column; }
+      .nav-links { justify-content: center; gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">Safi Ahmed</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-btn" id="themeBtn">☀</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home">
+      <div class="card hero">
+        <div class="profile-box">
+          <img src="https://via.placeholder.com/300x300.png?text=Profile" alt="Profile photo" class="profile-img">
+          <p>sappiahmed@gmail.com<br>safi@kw.ac.kr</p>
+          <div class="social-links">
+            <a href="#">Google Scholar</a>
+            <span>|</span>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+        <div>
+          <h1>Safi Ahmed</h1>
+          <p>
+            I am an MS integrated PhD student in Electronic Engineering at Kwangwoon University, Seoul, Korea,
+            with a strong background in Textile Engineering. My research interests focus on smart textiles,
+            wearable sensors, and flexible electronics, with particular expertise in textile-based resistive and
+            capacitive pressure, touch, and strain sensors for human–machine interaction and healthcare applications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="card">
+        <h2 class="section-title">Research</h2>
+        <div class="title-line"></div>
+        <p class="section-text">
+          My research interests include smart textiles, flexible electronics, wearable sensors, bioelectronics,
+          Internet of Things, and machine learning for monitoring human motion and vital biosignals.
+        </p>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="card">
+        <h2 class="section-title">Education</h2>
+        <div class="title-line"></div>
+        <div class="timeline-item">
+          <h3>Kwangwoon University</h3>
+          <span>MS–PhD Integrated Program in Electronic Engineering</span>
+          <p>Seoul, Korea</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Bangladesh University of Textiles</h3>
+          <span>BSc in Fabric Engineering</span>
+          <p>Dhaka, Bangladesh</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="card">
+        <h2 class="section-title">Experience</h2>
+        <div class="title-line"></div>
+        <div class="timeline-item">
+          <h3>Research Assistant</h3>
+          <span>ASER Lab, Kwangwoon University</span>
+          <p>Working on wearable sensors, smart textiles, and flexible sensing systems for healthcare and HCI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="card">
+        <h2 class="section-title">Publications</h2>
+        <div class="title-line"></div>
+        <div class="pub-list">
+          <div class="pub-item">
+            <h4>Publication Title 1</h4>
+            <p>Author 1, Author 2, <strong>Safi Ahmed</strong>. Journal Name, Year.</p>
+          </div>
+          <div class="pub-item">
+            <h4>Publication Title 2</h4>
+            <p>Author 1, <strong>Safi Ahmed</strong>, Author 3. Journal Name, Year.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card">
+        <h2 class="section-title">Contact</h2>
+        <div class="title-line"></div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <strong>Email</strong>
+            <a href="mailto:sappiahmed@gmail.com">sappiahmed@gmail.com</a>
+          </div>
+          <div class="contact-card">
+            <strong>Institution</strong>
+            <p>Kwangwoon University, Seoul, Korea</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Safi Ahmed. All rights reserved.
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      themeBtn.textContent = document.body.classList.contains('dark') ? '☾' : '☀';
+    });
+  </script>
+</body>
+</html>
